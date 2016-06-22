@@ -1,21 +1,18 @@
-/*
- * 
- */
+;
 
-// kirikiri script
+// 吉里吉里スクリプトの読み込み
 phina.asset.AssetLoader.register('ks', function(key, path) {
   var novel = phina.novel.Script(path);
   var flow = novel.load(path);
   return flow;
 });
 
-// novel script
+// phina.novel.jsスクリプトの読み込み
 phina.asset.AssetLoader.register('novel', function(key, value) {
   var novel = phina.novel.Script(path);
   var flow = novel.load(path);
   return flow;
 });
-
 
 phina.define('phina.novel.Script', {
   superClass: 'phina.asset.Asset',
@@ -54,9 +51,6 @@ phina.define('phina.novel.Script', {
       var flow = phina.util.Flow(function(resolve) {
         var cmd = task.replace(/[@\[\]]/g, '');
         var filename = cmd.match(/path=(.*)/)[1];
-        // if (query) {
-        //   filename += '?' + query;
-        // }
         var file = phina.asset.File();
         file.load(filename)
         .then(function() {

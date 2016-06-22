@@ -1,3 +1,5 @@
+;
+
 phina.novel.Tag.set({
 
   select_start: function(app, params) {
@@ -88,5 +90,5 @@ phina.define("phina.novel.SelectScene", {
     this.bg.alpha = 0;
     this.bg.tweener.fadeIn(100);
   },
-
 });
+

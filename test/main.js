@@ -7,6 +7,7 @@ var SCREEN_HEIGHT   = 465;        // スクリーン高さ
 var SCREEN_CENTER_X = SCREEN_WIDTH/2;   // スクリーン幅の半分
 var SCREEN_CENTER_Y = SCREEN_HEIGHT/2;  // スクリーン高さの半分
 
+// 最初に読み込むアセット
 var ASSETS = {
   ks: {
     'novel': 'novels/test.ks',
@@ -20,7 +21,6 @@ phina.globalize();
  * main
  */
 phina.main(function() {
-
   var app = GameApp({
     startLabel: 'main',
     width: SCREEN_WIDTH,
@@ -28,7 +28,6 @@ phina.main(function() {
     backgroundColor: '#444',
     assets: ASSETS,
   });
-  
   app.run();
 });
 
