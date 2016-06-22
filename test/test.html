@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <style>
+      @font-face {
+        font-family: 'tatefont';
+        src: url('fonts/tatefont.otf');
+      }
+      
+      body {
+        font-family: 'tatefont';
+      }
+    </style>
+    <script src="./phina.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/layer.js"></script>
+    <script src="../scripts/element.js"></script>
+    <script src="../scripts/tag/core.js"></script>
+    <script src="../scripts/tag/text.js"></script>
+    <script src="../scripts/tag/asset.js"></script>
+    <script src="../scripts/tag/object.js"></script>
+    <script src="../scripts/tag/sound.js"></script>
+    <script src="../scripts/tag/select.js"></script>
+    <script src="main.js"></script>
+    <script>
+    
+    phina.graphics.Canvas.prototype._drawVerticalText = function(func, text, x, y) {
+      var ctx = this.context;
+      var lines = text.split('\n');
+      var charSize = this.context.measureText('あ').width;
+      
+      ctx.save();
+      
+      ctx.textAlign = "right";
+      ctx.textBaseline = "top";
+
+      Array.prototype.forEach.call(text, function(ch, j) {
+        var _x, _y;
+        
+        ctx.save();
+        
+        if (ch.match(/[　。、ー〜＝（）「」＜＞っッぁぃぅぇぉァィゥェォゃゅょャュョ]/)!=null) {
+          _x = x;
+          _y = y+charSize*j;
+          ctx.font = "12px 'tatefont'";
+        }
+        else {
+          _x = x;
+          _y = y+charSize*j;
+        }
+        ctx[func](ch, _x, _y);
+        
+        ctx.restore();
+      });
+      
+      ctx.restore();
+    };
+    
+    </script>
+  </head>
+  <body>
+    <canvas id="world"></canvas>
+  </body>
+</html>
