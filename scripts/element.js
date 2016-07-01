@@ -7,10 +7,10 @@ phina.define("phina.novel.Element", {
   
   elementMap: null,
   
-  init: function(script) {
+  init: function(type, script) {
     this.superInit();
     if (typeof script == "string") {
-      this.script = phina.asset.AssetManager.get('ks', script);
+      this.script = phina.asset.AssetManager.get(type, script);
     }
     else {
       this.script = script;
@@ -217,8 +217,8 @@ phina.define("phina.novel.Element", {
         this.macro(task.func);
       }
       else {
-        debugger;
         console.assert(func, "don't define `{0}`!".format(task.func));
+        debugger;
       }
       
       // 次のタスクへ

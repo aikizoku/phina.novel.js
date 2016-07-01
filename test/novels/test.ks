@@ -1,7 +1,8 @@
 @import path=novels/common.novel
 
 [macro name=hoge]
-
+  
+  aaaaaaaaaaaaaaaaaaaaaaaa[l][r]
 	hoge {num}
 	[hoge2 num=500]
 
@@ -18,6 +19,8 @@
 
 
 *top
+
+[aiueo]
 
 [var key=bgm_path value=../assets/bgm.mp3]
 

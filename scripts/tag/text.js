@@ -33,7 +33,7 @@
       var la = this.labelArea;
 
       if (params.size !== undefined) la.fontSize = params.size;
-      if (params.color !== undefined) la.fillStyle = params.color;
+      if (params.color !== undefined) la.fill = params.color;
       if (params.face !== undefined) la.fontFamily = params.face;
       if (params.lineSpace !== undefined) la.lineSpace = params.lineSpace;
       if (params.lineHeight !== undefined) la.lineHeight = params.lineHeight;

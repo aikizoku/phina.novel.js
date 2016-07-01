@@ -42,7 +42,7 @@ phina.define('MainScene', {
 
     // ノベルを作成
     var novel = 'novel';
-    var elm = phina.novel.Element(novel).addChildTo(this);
+    var elm = phina.novel.Element('ks', novel).addChildTo(this);
 
     // 文字数表示用のラベルを作成
     var label = Label().addChildTo(this);

@@ -53,7 +53,7 @@ phina.define("phina.novel.SelectScene", {
         bg: {
           type: "phina.display.RectangleShape",
           init: [SCREEN_WIDTH, SCREEN_HEIGHT, {
-            fillStyle: "rgba(40, 40, 40, 0.5)",
+            fill: "rgba(40, 40, 40, 0.5)",
           }],
           originX: 0,
           originY: 0,

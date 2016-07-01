@@ -15,7 +15,7 @@ phina.asset.AssetLoader.register('ks', function(key, path) {
 });
 
 // phina.novel.jsスクリプトの読み込み
-phina.asset.AssetLoader.register('novel', function(key, value) {
+phina.asset.AssetLoader.register('novel', function(key, path) {
   var novel = phina.novel.Script(path);
   var flow = novel.load(path);
   return flow;
@@ -60,13 +60,13 @@ phina.define('phina.novel.Script', {
         var filename = cmd.match(/path=(.*)/)[1];
         var file = phina.asset.File();
         file.load(filename)
-        .then(function() {
-          text = text.replace(task, this.data);
+        .then(function(res) {
+          text = text.replace(task, res.data);
           resolve(text);
-        });
-      });
+        }.bind(this));
+      }.bind(this));
       flows.push(flow);
-    });
+    }.bind(this));
 
     phina.util.Flow.all(flows)
     .then(function() {
@@ -213,10 +213,10 @@ phina.define("phina.novel.Element", {
   
   elementMap: null,
   
-  init: function(script) {
+  init: function(type, script) {
     this.superInit();
     if (typeof script == "string") {
-      this.script = phina.asset.AssetManager.get('ks', script);
+      this.script = phina.asset.AssetManager.get(type, script);
     }
     else {
       this.script = script;
@@ -423,8 +423,8 @@ phina.define("phina.novel.Element", {
         this.macro(task.func);
       }
       else {
-        debugger;
         console.assert(func, "don't define `{0}`!".format(task.func));
+        debugger;
       }
       
       // 次のタスクへ
@@ -574,7 +574,7 @@ phina.define("phina.novel.Element", {
       this.next();
     },
 
-    "endif": function(app, params) {
+    endif: function(app, params) {
       this.endifStack.pop();
 
         this.next();
@@ -697,7 +697,7 @@ phina.define("phina.novel.Element", {
       var la = this.labelArea;
 
       if (params.size !== undefined) la.fontSize = params.size;
-      if (params.color !== undefined) la.fillStyle = params.color;
+      if (params.color !== undefined) la.fill = params.color;
       if (params.face !== undefined) la.fontFamily = params.face;
       if (params.lineSpace !== undefined) la.lineSpace = params.lineSpace;
       if (params.lineHeight !== undefined) la.lineHeight = params.lineHeight;
@@ -996,7 +996,7 @@ phina.define("phina.novel.SelectScene", {
         bg: {
           type: "phina.display.RectangleShape",
           init: [SCREEN_WIDTH, SCREEN_HEIGHT, {
-            fillStyle: "rgba(40, 40, 40, 0.5)",
+            fill: "rgba(40, 40, 40, 0.5)",
           }],
           originX: 0,
           originY: 0,

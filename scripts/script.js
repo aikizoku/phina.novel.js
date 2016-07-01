@@ -8,7 +8,7 @@ phina.asset.AssetLoader.register('ks', function(key, path) {
 });
 
 // phina.novel.jsスクリプトの読み込み
-phina.asset.AssetLoader.register('novel', function(key, value) {
+phina.asset.AssetLoader.register('novel', function(key, path) {
   var novel = phina.novel.Script(path);
   var flow = novel.load(path);
   return flow;
@@ -53,13 +53,13 @@ phina.define('phina.novel.Script', {
         var filename = cmd.match(/path=(.*)/)[1];
         var file = phina.asset.File();
         file.load(filename)
-        .then(function() {
-          text = text.replace(task, this.data);
+        .then(function(res) {
+          text = text.replace(task, res.data);
           resolve(text);
-        });
-      });
+        }.bind(this));
+      }.bind(this));
       flows.push(flow);
-    });
+    }.bind(this));
 
     phina.util.Flow.all(flows)
     .then(function() {

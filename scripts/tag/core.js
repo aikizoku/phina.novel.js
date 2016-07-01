@@ -130,7 +130,7 @@
       this.next();
     },
 
-    "endif": function(app, params) {
+    endif: function(app, params) {
       this.endifStack.pop();
 
         this.next();
