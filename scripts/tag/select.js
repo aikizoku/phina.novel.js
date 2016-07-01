@@ -79,9 +79,8 @@ phina.define("phina.novel.SelectScene", {
           .clear()
           .fadeOut(100)
           .call(function() {
-            var e = phina.event.Event('select');
-            e.selectIndex = i;
-            this.fire(e);
+            var param = {selectIndex: i};
+            this.flare('select', param);
             this.app.popScene();
           }, this);
       }.bind(this);

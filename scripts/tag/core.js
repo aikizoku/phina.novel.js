@@ -203,12 +203,8 @@
     },
     
     event: function(app, params) {
-      var e = phina.event.Event("novelevent");
-      e.name = params.name;
-      e.params = params;
-      
-      this.fire(e);
-      
+      params.name = params.name;
+      this.flare('novelevent', params);
       this.next();
     },
 

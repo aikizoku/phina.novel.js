@@ -91,8 +91,7 @@ phina.define("phina.novel.Element", {
     this.seek = 0;
     
     if (!this.activeTask) {
-      var e = phina.event.Event("taskfinish");
-      this.fire(e);
+      this.flare('taskfinish');
       this.flare("finish");
     }
   },

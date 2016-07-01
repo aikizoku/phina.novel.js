@@ -297,8 +297,7 @@ phina.define("phina.novel.Element", {
     this.seek = 0;
     
     if (!this.activeTask) {
-      var e = phina.event.Event("taskfinish");
-      this.fire(e);
+      this.flare('taskfinish');
       this.flare("finish");
     }
   },
@@ -647,12 +646,8 @@ phina.define("phina.novel.Element", {
     },
     
     event: function(app, params) {
-      var e = phina.event.Event("novelevent");
-      e.name = params.name;
-      e.params = params;
-      
-      this.fire(e);
-      
+      params.name = params.name;
+      this.flare('novelevent', params);
       this.next();
     },
 
@@ -1022,9 +1017,8 @@ phina.define("phina.novel.SelectScene", {
           .clear()
           .fadeOut(100)
           .call(function() {
-            var e = phina.event.Event('select');
-            e.selectIndex = i;
-            this.fire(e);
+            var param = {selectIndex: i};
+            this.flare('select', param);
             this.app.popScene();
           }, this);
       }.bind(this);
