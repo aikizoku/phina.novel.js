@@ -2,7 +2,6 @@
 
 [macro name=hoge]
   
-  aaaaaaaaaaaaaaaaaaaaaaaa[l][r]
 	hoge {num}
 	[hoge2 num=500]
 
@@ -39,6 +38,12 @@
 
 *start
 
+[select_start]
+  [select_option tag=select1 text=選択肢１]
+  [select_option tag=select2 text=選択肢２]
+  [select_option tag=select3 text=選択肢３]
+[select_end]
+
 ; 背景
 [image_show name=bg layer=base x=0 y=0 originX=0 originY=0 width=465 height=465]
 [wait time=1000]
@@ -72,12 +77,29 @@
 [image_hide layer=0 name=hiyoko]
 [wait time=1000 hoge='abc']
 
+
+
 [log message="finish!"]
 
 [cm]
 
 @jump target=*start
 
+// 回答1
+[macro name=select1]
+  select1 を選択したよ.
+[endmacro]
+
+// 回答2
+[macro name=select2]
+  select2 を選択したよ.
+[endmacro]
+
+
+// 回答3
+[macro name=select3]
+  select3 を選択したよ.
+[endmacro]
 
 
 
