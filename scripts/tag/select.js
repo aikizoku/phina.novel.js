@@ -43,7 +43,7 @@ phina.novel.Tag.set({
 
 
 phina.define("phina.novel.SelectScene", {
-  superClass: "phina.app.DisplayScene",
+  superClass: "phina.app.Scene",
 
   init: function(params) {
     this.superInit();

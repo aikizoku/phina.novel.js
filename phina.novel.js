@@ -989,10 +989,12 @@ phina.define("phina.novel.SelectScene", {
     this.fromJSON({
       children: {
         bg: {
-          type: "phina.display.RectangleShape",
-          init: [SCREEN_WIDTH, SCREEN_HEIGHT, {
-            fill: "rgba(40, 40, 40, 0.5)",
-          }],
+          className: "phina.display.RectangleShape",
+          arguments: {
+            width: SCREEN_WIDTH,
+            height: SCREEN_HEIGHT,
+            fill: "rgba(255, 255, 255, 0.5)",
+          },
           originX: 0,
           originY: 0,
         },
@@ -1000,9 +1002,9 @@ phina.define("phina.novel.SelectScene", {
     });
 
     params.options.each(function(elm, i) {
-      var b = phina.ui.FlatButton({
+      var b = phina.ui.Button({
         text: elm.text,
-        bgColor: 'hsl(220, 80%, 60%)',
+        backgroundColor: 'hsl(220, 80%, 60%)',
         fontColor: "#555",
         fontSize: 27,
         width: 220,
